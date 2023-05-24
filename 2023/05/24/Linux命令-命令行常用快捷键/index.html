@@ -26,7 +26,7 @@
 <meta property="og:description" content="使用快捷键可以高效的调整Linux命令...">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-24T03:50:00.000Z">
-<meta property="article:modified_time" content="2023-05-24T03:58:56.000Z">
+<meta property="article:modified_time" content="2023-05-24T04:00:04.000Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="常用命令">
 <meta name="twitter:card" content="summary">
@@ -352,8 +352,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-05-24 11:58:56</span>
-            <span class="mobile">2023-05-24 11:58</span>
+            <span class="desktop">2023-05-24 12:04</span>
+            <span class="mobile">2023-05-24 12</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -460,7 +460,7 @@
         <li><strong>Created at:</strong> 2023-05-24 11:50:00</li>
         
             <li>
-                <strong>Updated at:</strong> 2023-05-24 11:58:56
+                <strong>Updated at:</strong> 2023-05-24 12:00:04
             </li>
         
         <li>
@@ -510,6 +510,63 @@
             
 
 
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-pjax
+            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <script data-pjax>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: '8359a741c2c723250c6f',
+                    clientSecret: 'b65ec2e3cbfe34ccb7ac8e4b7ffce2dff9c0f3ae',
+                    repo: 'Gitalk_Comment',
+                    owner: 'HuTa0kj',
+                    admin: ['HuTa0kj'],
+                    id: __gitalk__pathname,
+                    language: 'en'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
             
         </div>
 
@@ -615,6 +672,10 @@
         
 
         <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
         
     </ul>
 </div>
