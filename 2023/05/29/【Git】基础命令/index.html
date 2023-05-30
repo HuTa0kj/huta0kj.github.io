@@ -22,16 +22,16 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Git基础目录结构git项目由git仓库、暂存区、工作目录组成。 git仓库一般是远程的仓库，工作目录是在本地的。 基本工作流程：  在工作目录中修改文件。  暂存文件，将文件的快照放入暂存区域。  提交更新，找到暂存区域的文件，将快照永久性存储到Git仓库目录。    创建Git仓库第一种是在现有项目或目录下导入所有文件到Git中； 第二种是从一个服务器克隆一个现有的Git仓库。 创建本地Git">
+        <meta name="description" content="Git基础目录结构git项目由git仓库、暂存区、工作目录组成。 git仓库一般是远程的仓库，工作目录是在本地的。 基本工作流程：  在工作目录中修改文件。  暂存文件，将文件的快照放入暂存区域。  提交更新，找到暂存区域的文件，将快照永久性存储到Git仓库目录。   名称  Workspace：工作区 Index &#x2F; Stage：暂存区 Repository：仓库区（或本地仓库） Re">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Git】基础命令">
 <meta property="og:url" content="http://example.com/2023/05/29/%E3%80%90Git%E3%80%91%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Git基础目录结构git项目由git仓库、暂存区、工作目录组成。 git仓库一般是远程的仓库，工作目录是在本地的。 基本工作流程：  在工作目录中修改文件。  暂存文件，将文件的快照放入暂存区域。  提交更新，找到暂存区域的文件，将快照永久性存储到Git仓库目录。    创建Git仓库第一种是在现有项目或目录下导入所有文件到Git中； 第二种是从一个服务器克隆一个现有的Git仓库。 创建本地Git">
+<meta property="og:description" content="Git基础目录结构git项目由git仓库、暂存区、工作目录组成。 git仓库一般是远程的仓库，工作目录是在本地的。 基本工作流程：  在工作目录中修改文件。  暂存文件，将文件的快照放入暂存区域。  提交更新，找到暂存区域的文件，将快照永久性存储到Git仓库目录。   名称  Workspace：工作区 Index &#x2F; Stage：暂存区 Repository：仓库区（或本地仓库） Re">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/%E3%80%90Git%E3%80%91%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/image-20230530095941661.png">
 <meta property="article:published_time" content="2023-05-29T14:22:09.000Z">
-<meta property="article:modified_time" content="2023-05-30T02:00:04.000Z">
+<meta property="article:modified_time" content="2023-05-30T02:44:02.000Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="常用命令">
 <meta property="article:tag" content="Git">
@@ -380,8 +380,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-05-30 10:04</span>
-            <span class="mobile">2023-05-30 10</span>
+            <span class="desktop">2023-05-30 10:44:02</span>
+            <span class="mobile">2023-05-30 10:44</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -418,12 +418,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>913 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.1k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>3 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>4 分钟</span>
         </span>
     
     
@@ -448,18 +448,25 @@
 <li><p>暂存文件，将文件的快照放入暂存区域。</p>
 </li>
 <li><p>提交更新，找到暂存区域的文件，将快照永久性存储到Git仓库目录。</p>
+</li>
+</ol>
+<p>名称</p>
+<ul>
+<li>Workspace：工作区</li>
+<li>Index &#x2F; Stage：暂存区</li>
+<li>Repository：仓库区（或本地仓库）</li>
+<li>Remote：远程仓库</li>
+</ul>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/../images/%E3%80%90Git%E3%80%91%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/image-20230530095941661.png"
                       alt="image-20230530095941661"
                 ></p>
-</li>
-</ol>
 <h3 id="创建Git仓库"><a href="#创建Git仓库" class="headerlink" title="创建Git仓库"></a>创建Git仓库</h3><p>第一种是在现有项目或目录下导入所有文件到Git中； 第二种是从一个服务器克隆一个现有的Git仓库。</p>
 <h4 id="创建本地Git项目"><a href="#创建本地Git项目" class="headerlink" title="创建本地Git项目"></a>创建本地Git项目</h4><p>在托管平台如<code>Github</code>创建一个仓库，会得到一个<code>SSH/HTTP</code>的git地址，记住这个地址。</p>
 <p>选一个文件夹执行</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化本地git</span></span><br><span class="line">git init</span><br><span class="line"><span class="comment"># 将项目里所有文件添加</span></span><br><span class="line">git add .</span><br><span class="line"><span class="comment"># 提交</span></span><br><span class="line">git commit -m <span class="string">&quot;first commit&quot;</span></span><br><span class="line"><span class="comment"># 创建main分支</span></span><br><span class="line">git branch -M main</span><br><span class="line"><span class="comment"># 跟上一开始的git地址</span></span><br><span class="line">git remote add origin git@github.com:xxxx/xxxx.git</span><br><span class="line"><span class="comment"># 推送到远程仓库</span></span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化本地git</span></span><br><span class="line">git init</span><br><span class="line"><span class="comment"># 将项目里所有文件添加</span></span><br><span class="line">git add .</span><br><span class="line"><span class="comment"># 提交 -m里面是提交注释</span></span><br><span class="line">git commit -m <span class="string">&quot;first commit&quot;</span></span><br><span class="line"><span class="comment"># 创建main分支</span></span><br><span class="line">git branch -M main</span><br><span class="line"><span class="comment"># 跟上一开始的git地址</span></span><br><span class="line">git remote add origin git@github.com:xxxx/xxxx.git</span><br><span class="line"><span class="comment"># 推送到远程仓库</span></span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure></div>
 
 <h4 id="克隆远程项目"><a href="#克隆远程项目" class="headerlink" title="克隆远程项目"></a>克隆远程项目</h4><p>想克隆别人的仓库，可以使用两种方法。</p>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 克隆仓库</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/libgit2/libgit2</span><br><span class="line"><span class="comment"># 克隆仓库自定义仓库名</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/libgit2/libgit2 mylibgit</span><br></pre></td></tr></table></figure></div>
@@ -467,29 +474,37 @@
 <h3 id="文件状态"><a href="#文件状态" class="headerlink" title="文件状态"></a>文件状态</h3><p>工作目录下的每一个文件都不外乎这两种状态：已跟踪或未跟踪。已跟踪的文件是指那些被纳入了版本控制的文件，在上一次快照中有它们的记录，在工作一段时间后，它们的状态可能处于未修改，已修改或已放入暂存区。工作目录中除已跟踪文件以外的所有其它文件都属于未跟踪文件，它们既不存在于上次快照的记录中，也没有放入暂存区。初次克隆某个仓库的时候，工作目录中的所有文件都属于已跟踪文件，并处于未修改状态。</p>
 <h4 id="暂存区操作"><a href="#暂存区操作" class="headerlink" title="暂存区操作"></a>暂存区操作</h4><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add file1 file2 file3         // 添加到缓存区</span><br><span class="line">git add .                         // 添加全部修改文件 ；如果有具体文件，可以加上文件名</span><br><span class="line">git commit -m <span class="string">&quot;name&quot;</span>              // 一次性提交多个文件</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="回退"><a href="#回退" class="headerlink" title="回退"></a>回退</h3><h4 id="查看提交日志"><a href="#查看提交日志" class="headerlink" title="查看提交日志"></a>查看提交日志</h4><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span>                           // 查看历史记录  </span><br><span class="line">git <span class="built_in">log</span> --prettry=oneline         // 查看历史记录-简易版</span><br></pre></td></tr></table></figure></div>
+<h3 id="回退"><a href="#回退" class="headerlink" title="回退"></a>回退</h3><h4 id="查看提交日志"><a href="#查看提交日志" class="headerlink" title="查看提交日志"></a>查看提交日志</h4><p>通过日志可以查看提交记录。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span>                           // 查看历史记录  </span><br><span class="line">git <span class="built_in">log</span> --prettry=oneline         // 查看历史记录-简易版</span><br></pre></td></tr></table></figure></div>
 
 <h4 id="回退历史版本"><a href="#回退历史版本" class="headerlink" title="回退历史版本"></a>回退历史版本</h4><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD^            // 回退到上一个版本</span><br><span class="line">git reset --hard HEAD~10          // 回退到第前10个版本</span><br></pre></td></tr></table></figure></div>
 
+<p>如果回退后，想回到新版本，使用<code>git reset --hard 版本号</code>就可以，版本号可以通过<code>git reflog </code>获取</p>
 <h3 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h3><p>本地推送到远程仓库</p>
 <p>远程仓库拉取到本地</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 本地-&gt;GitHub</span><br><span class="line">git remote add origin 地址  		    // 关联一个GitHub</span><br><span class="line">git push -u origin master          // 本地内容推送到GitHub（第一次用）</span><br><span class="line">git push origin master             // 以后每次提交用</span><br><span class="line"></span><br><span class="line">// GitHub-&gt;本地</span><br><span class="line">git <span class="built_in">clone</span> git地址</span><br><span class="line">git pull    		              // 拉取最新主分支代码</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// GitHub-&gt;本地</span><br><span class="line">git <span class="built_in">clone</span> git地址</span><br><span class="line">git pull    		              // 拉取最新主分支代码</span><br><span class="line"></span><br><span class="line">// 本地-&gt;GitHub</span><br><span class="line">git remote add origin 地址  		    // 关联一个GitHub</span><br><span class="line">git push -u origin master          // 本地内容推送到GitHub（第一次用）</span><br><span class="line">git push origin master             // 以后每次提交用</span><br></pre></td></tr></table></figure></div>
+
+<p>查看远程仓库信息</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote</span><br><span class="line">git remote –v  //详细信息</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><p>分支的意义是可以把你的工作从开发主线上分离开来，以免影响开发主线。Git鼓励在工作流程中频繁地使用分支与合并，哪怕一天之内进行许多次。</p>
 <h4 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h4><p>切换分支</p>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b feature1       // 创建并切换到feature1分支</span><br><span class="line">git branch                     // 查看当前所有分支</span><br><span class="line">git checkout master            // 切换到主分支  </span><br></pre></td></tr></table></figure></div>
 
 <p>合并分支</p>
+<p>通常合并分支时，git一般使用<code>Fast forward</code>模式，在这种模式下，删除分支后，会丢掉分支信息，可以使用带参数<code>–no-ff</code>来禁用<code>Fast forward</code>模式。</p>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git merge feature1             // 合并master和feature1分支:fast-mode模式</span><br><span class="line">git merge --no-ff -m <span class="string">&quot;merge with no-ff&quot;</span> &lt;name&gt;    // 合并分支，并且留下信息说明我在这里合并过 </span><br></pre></td></tr></table></figure></div>
 
 <p>删除分支</p>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch -d feature1         // 删除本地feature1分支</span><br><span class="line">git push origin --delete remoteBranchName//删除远程分支</span><br></pre></td></tr></table></figure></div>
 
 <p>解决冲突</p>
+<p>也可以拉取最新代码解决冲突再推送。</p>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 解决合并冲突</span><br><span class="line">git <span class="built_in">log</span> --graph --pretty=oneline --abbrev-commit   // 树状图查看分支情况</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>Git练习平台：<a class="link"   target="_blank" rel="noopener" href="https://learngitbranching.js.org/?locale=zh_CN" >https://learngitbranching.js.org/?locale=zh_CN <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>Pro Git：<a class="link"   target="_blank" rel="noopener" href="https://www.progit.cn/#_pro_git" >https://www.progit.cn/#_pro_git <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>Git使用教程：<a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/tugenhua0707/p/4050072.html" >https://www.cnblogs.com/tugenhua0707/p/4050072.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 
             </div>
 
@@ -502,7 +517,7 @@
         <li><strong>创建于:</strong> 2023-05-29 22:22:09</li>
         
             <li>
-                <strong>更新于:</strong> 2023-05-30 10:00:04
+                <strong>更新于:</strong> 2023-05-30 10:44:02
             </li>
         
         <li>
