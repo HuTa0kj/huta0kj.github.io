@@ -17,23 +17,22 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2023/05/30/【漏洞验证poc】配置linux网络代理/"/>
+    <link rel="canonical" href="http://example.com/2023/06/01/【漏洞验证poc】poc介绍和简单demo/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="懂的都懂  例如Kali Linux没有可视化代理配置的这种情况，就很容易导致代理没有正常启动，或者因为使用代理不能正常使用网络、访问内网。 配置方法使用Linux下的clash for windows（CFW）进行举例，CFW默认端口为7890 在命令行配置临时环境变量，指定代理端口7890 1export https_proxy&#x3D;http:&#x2F;&#x2F;127.0.0.1:7890 http_prox">
+        <meta name="description" content="POC介绍POCPOC，Proof ofConcept，中文意思是“观点证明”。 这个短语会在漏洞报告中使用，漏洞报告中的POC则是一段说明或者一个攻击的样例，使得读者能够确认这个漏洞是真实存在的。 实际场景：发现一个新漏洞，需要让客户核查自己的系统存不存在这个漏洞，但是复现的方法可能有很多步骤，涉及的操作也比较复杂。 这时候有两种方法：  找专业人员对每个机器进行复现 写一个自动化验证脚本，直接">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【漏洞验证POC】配置Linux网络代理">
-<meta property="og:url" content="http://example.com/2023/05/30/%E3%80%90%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81POC%E3%80%91%E9%85%8D%E7%BD%AELinux%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86/index.html">
+<meta property="og:title" content="【漏洞验证POC】POC介绍和简单Demo">
+<meta property="og:url" content="http://example.com/2023/06/01/%E3%80%90%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81POC%E3%80%91POC%E4%BB%8B%E7%BB%8D%E5%92%8C%E7%AE%80%E5%8D%95Demo/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="懂的都懂  例如Kali Linux没有可视化代理配置的这种情况，就很容易导致代理没有正常启动，或者因为使用代理不能正常使用网络、访问内网。 配置方法使用Linux下的clash for windows（CFW）进行举例，CFW默认端口为7890 在命令行配置临时环境变量，指定代理端口7890 1export https_proxy&#x3D;http:&#x2F;&#x2F;127.0.0.1:7890 http_prox">
+<meta property="og:description" content="POC介绍POCPOC，Proof ofConcept，中文意思是“观点证明”。 这个短语会在漏洞报告中使用，漏洞报告中的POC则是一段说明或者一个攻击的样例，使得读者能够确认这个漏洞是真实存在的。 实际场景：发现一个新漏洞，需要让客户核查自己的系统存不存在这个漏洞，但是复现的方法可能有很多步骤，涉及的操作也比较复杂。 这时候有两种方法：  找专业人员对每个机器进行复现 写一个自动化验证脚本，直接">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-05-30T09:05:09.000Z">
-<meta property="article:modified_time" content="2023-05-30T09:12:38.000Z">
+<meta property="article:published_time" content="2023-06-01T06:54:24.000Z">
+<meta property="article:modified_time" content="2023-06-01T07:47:52.000Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="配置">
-<meta property="article:tag" content="网络代理">
+<meta property="article:tag" content="POC">
 <meta name="twitter:card" content="summary">
     
     
@@ -46,7 +45,7 @@
     
     <title>
         
-            【漏洞验证POC】配置Linux网络代理 -
+            【漏洞验证POC】POC介绍和简单Demo -
         
         HuTa0&#39;s Blog
     </title>
@@ -349,7 +348,7 @@
             
             
                 <div class="article-title">
-                    <h1 class="article-title-regular">【漏洞验证POC】配置Linux网络代理</h1>
+                    <h1 class="article-title-regular">【漏洞验证POC】POC介绍和简单Demo</h1>
                 </div>
             
                 
@@ -371,15 +370,15 @@
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-05-30 17:05:09</span>
-        <span class="mobile">2023-05-30 17:05</span>
+        <span class="desktop">2023-06-01 14:54:24</span>
+        <span class="mobile">2023-06-01 14:54</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-05-30 17:12:38</span>
-            <span class="mobile">2023-05-30 17:12</span>
+            <span class="desktop">2023-06-01 15:47:52</span>
+            <span class="mobile">2023-06-01 15:47</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -402,11 +401,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E9%85%8D%E7%BD%AE/">配置</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86/">网络代理</a>&nbsp;
+                        <a href="/tags/POC/">POC</a>&nbsp;
                     </li>
                 
             </ul>
@@ -416,12 +411,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>319 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.1k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>1 分钟</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>4 分钟</span>
         </span>
     
     
@@ -437,26 +432,38 @@
             
 
             <div class="article-content markdown-body">
-                <blockquote>
-<p>懂的都懂</p>
-</blockquote>
-<p>例如Kali Linux没有可视化代理配置的这种情况，就很容易导致代理没有正常启动，或者因为使用代理不能正常使用网络、访问内网。</p>
-<h2 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a>配置方法</h2><p>使用<code>Linux</code>下的<code>clash for windows（CFW）</code>进行举例，<code>CFW</code>默认端口为<code>7890</code></p>
-<p>在命令行配置<em>临时</em>环境变量，指定代理端口<code>7890</code></p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7891</span><br></pre></td></tr></table></figure></div>
-
-<p>查看代理的两种方式</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$proxy</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">env</span>|grep -i proxy</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="检查配置结果"><a href="#检查配置结果" class="headerlink" title="检查配置结果"></a>检查配置结果</h3><p>使用<code>curl</code>命令进行验证，可以查看当前<code>ip</code>属地</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -L ip.tool.lu</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="取消代理"><a href="#取消代理" class="headerlink" title="取消代理"></a>取消代理</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 取消代理 </span></span><br><span class="line"><span class="built_in">unset</span> http_proxy</span><br><span class="line"><span class="built_in">unset</span> https_proxy</span><br><span class="line"><span class="built_in">unset</span> ftp_proxy</span><br><span class="line"><span class="built_in">unset</span> all_proxy</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
-<li>使用<code>SSH</code>协议远程连接的时候，所执行的命令是不经过代理的，因为<code>SSH</code>协议是通过加密方式来保护通信数据的安全性的，数据并不会走代理，如果需要代理，需要额外进行配置。</li>
-<li>验证的时候使用<code>curl</code>命令，如果使用<code>ping</code>命令是无法验证是否成功挂上代理的，因为<code>ping</code>命令使用的是<code>ICMP</code>协议，是为了验证是否和目标主机正常通信，而代理走的是<code>http</code>和<code>https</code>协议。</li>
+                <h2 id="POC介绍"><a href="#POC介绍" class="headerlink" title="POC介绍"></a>POC介绍</h2><h3 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h3><p>POC，Proof ofConcept，中文意思是“观点证明”。 这个短语会在漏洞报告中使用，漏洞报告中的POC则是一段说明或者一个攻击的样例，使得读者能够确认这个漏洞是真实存在的。</p>
+<p>实际场景：发现一个新漏洞，需要让客户核查自己的系统存不存在这个漏洞，但是复现的方法可能有很多步骤，涉及的操作也比较复杂。</p>
+<p>这时候有两种方法：</p>
+<ul>
+<li>找专业人员对每个机器进行复现</li>
+<li>写一个自动化验证脚本，直接执行√</li>
 </ul>
+<p>第二种肯定是最方便的，如果把多个&#x2F;一类的POC集成到一起就成为了一个扫描器(QAQ水一个毕业设计)。</p>
+<p>POC有两个原则：</p>
+<ul>
+<li>无害性：只进行验证，不进行漏洞利用；编写新POC时使用本地环境进行逻辑验证。</li>
+<li>严谨性：一个POC需要严格的逻辑判断，可能要反复的修正才能降低误报和漏报。</li>
+</ul>
+<h2 id="网络请求与响应"><a href="#网络请求与响应" class="headerlink" title="网络请求与响应"></a>网络请求与响应</h2><p>针对Web的POC进行发包是必不可少的一项，下面使用Python的request库进行原理的介绍如何完成一个简单的POC。</p>
+<h3 id="Requests"><a href="#Requests" class="headerlink" title="Requests"></a>Requests</h3><p>requests库可以发送get、post等请求，也可以获得response响应包的内容。具体requests库有很多的函数和方法，可以查看官方文档。</p>
+<h4 id="发送GET请求"><a href="#发送GET请求" class="headerlink" title="发送GET请求"></a>发送GET请求</h4><p>模拟一个get请求，url地址：<code>https://exam.com?id=1</code></p>
+<p>配置好host地址、访问参数、headers后，使用get方法进行请求。</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">host = <span class="string">&#x27;https://exam.com&#x27;</span></span><br><span class="line">url = host + <span class="string">&#x27;?id=1&#x27;</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>:<span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 	Safari/537.36&#x27;</span>, </span><br><span class="line">	<span class="string">&#x27;Accept&#x27;</span>:<span class="string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.9&#x27;</span>, </span><br><span class="line">	<span class="string">&#x27;Accept-Language&#x27;</span>:<span class="string">&#x27;zh-CN,zh;q=0.9,en;q=0.8&#x27;</span>, </span><br><span class="line">	<span class="string">&#x27;Accept-Encoding&#x27;</span>:<span class="string">&#x27;gzip, deflate&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">res = requests.get(purl,headers = headers)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="发送POST请求"><a href="#发送POST请求" class="headerlink" title="发送POST请求"></a>发送POST请求</h4><p>这里的数据包将会以data参数作为传入，也可以发送cookie。get和post函数差不多，就是post的数据需要使用data进行传输，get是放在url里面。</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&#x27;https://exam.com&#x27;</span></span><br><span class="line">payload = <span class="string">&quot;or 1=1&quot;</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>:<span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 	Safari/537.36&#x27;</span>, </span><br><span class="line">	<span class="string">&#x27;Accept&#x27;</span>:<span class="string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.9&#x27;</span>, </span><br><span class="line">	<span class="string">&#x27;Accept-Language&#x27;</span>:<span class="string">&#x27;zh-CN,zh;q=0.9,en;q=0.8&#x27;</span>, </span><br><span class="line">	<span class="string">&#x27;Accept-Encoding&#x27;</span>:<span class="string">&#x27;gzip, deflate&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">cookies = &#123;<span class="string">&#x27;cookies&#x27;</span>: <span class="string">&#x27;working&#x27;</span>&#125;</span><br><span class="line">res = requests.post(url,data = payload,headers = headers，cookies = cookies)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="获取response"><a href="#获取response" class="headerlink" title="获取response"></a>获取response</h4><p>上面使用get和post方法进行发包并把结果传给了<code>res</code>参数，<code>res</code>有下面的方法可以查看响应包的具体内容。</p>
+<p>提取参数也可以使用正则表达式，更加灵活。</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取状态码</span></span><br><span class="line">res.status_code</span><br><span class="line"><span class="comment"># 获取响应内容</span></span><br><span class="line">res.text</span><br><span class="line"><span class="comment"># 获取响应头</span></span><br><span class="line">res.headers</span><br><span class="line"><span class="comment"># 获取具体响应头</span></span><br><span class="line">res.headers[<span class="string">&#x27;Content-Type&#x27;</span>]</span><br><span class="line">res.headers.get(<span class="string">&#x27;Set-Cookie&#x27;</span>)</span><br><span class="line"><span class="comment"># 获取cookie</span></span><br><span class="line">res.cookies[<span class="string">&#x27;example_cookie_name&#x27;</span>]</span><br><span class="line"><span class="comment"># 获取session</span></span><br><span class="line">session = res.headers[<span class="string">&#x27;Set-Cookie&#x27;</span>].split(<span class="string">&quot;;&quot;</span>)[<span class="number">0</span>].split(<span class="string">&quot;=&quot;</span>)[<span class="number">1</span>]</span><br><span class="line"><span class="comment"># 获取json数据</span></span><br><span class="line">res.json()</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="模拟一次弱口令PoC"><a href="#模拟一次弱口令PoC" class="headerlink" title="模拟一次弱口令PoC"></a>模拟一次弱口令PoC</h3><p>场景：</p>
+<p>POST请求<code>https://exam.com</code>，账号密码为admin，响应包如果状态码为200，并且<code>Set-Cookie</code>包含<code>PHPSESSID</code>则存在漏洞。</p>
+<p>步骤：</p>
+<p><code>res.headers.get()</code>方法可以获取<code>Set-Cookie</code>的内容，可以使用<code>response.headers.get(&#39;Set-Cookie&#39;)</code>获取Set-Cookie的内容，但一般会使用<code>res.headers.get(&#39;Set-Cookie&#39;,None)</code>方法指定一个默认返回值<code>None</code>，以免出现不存在字段导致出错。</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;https://exam.com&#x27;</span></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>:<span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 	Safari/537.36&#x27;</span>, </span><br><span class="line">	<span class="string">&#x27;Accept&#x27;</span>:<span class="string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.9&#x27;</span>, </span><br><span class="line">	<span class="string">&#x27;Accept-Language&#x27;</span>:<span class="string">&#x27;zh-CN,zh;q=0.9,en;q=0.8&#x27;</span>, </span><br><span class="line">	<span class="string">&#x27;Accept-Encoding&#x27;</span>:<span class="string">&#x27;gzip, deflate&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">payload =  &#123;</span><br><span class="line">    <span class="string">&#x27;username&#x27;</span>: <span class="string">&#x27;admin&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;password&#x27;</span>: <span class="string">&#x27;admin&#x27;</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">res = requests.post(url,data = payload,headers = headers)</span><br><span class="line"><span class="keyword">if</span> res.status_code == <span class="number">200</span> <span class="keyword">and</span> <span class="string">&quot;PHPSESSID&quot;</span> <span class="keyword">in</span> res.headers.get(<span class="string">&#x27;Set-Cookie&#x27;</span>,<span class="literal">None</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;存在漏洞&#x27;</span>)</span><br></pre></td></tr></table></figure></div>
+
 
             </div>
 
@@ -464,16 +471,16 @@
                 <div class="post-copyright-info">
                     <div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> 【漏洞验证POC】配置Linux网络代理</li>
+        <li><strong>标题:</strong> 【漏洞验证POC】POC介绍和简单Demo</li>
         <li><strong>作者:</strong> HuTa0</li>
-        <li><strong>创建于:</strong> 2023-05-30 17:05:09</li>
+        <li><strong>创建于:</strong> 2023-06-01 14:54:24</li>
         
             <li>
-                <strong>更新于:</strong> 2023-05-30 17:12:38
+                <strong>更新于:</strong> 2023-06-01 15:47:52
             </li>
         
         <li>
-            <strong>链接:</strong> https://huta0kj.github.io/2023/05/30/【漏洞验证POC】配置Linux网络代理/
+            <strong>链接:</strong> https://huta0kj.github.io/2023/06/01/【漏洞验证POC】POC介绍和简单Demo/
         </li>
         <li>
             <strong>版权声明:</strong> 本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 进行许可。
@@ -488,11 +495,7 @@
                 <ul class="post-tags-box">
                     
                         <li class="tag-item">
-                            <a href="/tags/%E9%85%8D%E7%BD%AE/">#配置</a>&nbsp;
-                        </li>
-                    
-                        <li class="tag-item">
-                            <a href="/tags/%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86/">#网络代理</a>&nbsp;
+                            <a href="/tags/POC/">#POC</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -503,29 +506,14 @@
             
                 <div class="article-nav">
                     
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2023/06/01/%E3%80%90%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81POC%E3%80%91POC%E4%BB%8B%E7%BB%8D%E5%92%8C%E7%AE%80%E5%8D%95Demo/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">【漏洞验证POC】POC介绍和简单Demo</span>
-                                    <span class="post-nav-item">上一篇</span>
-                                </span>
-                            </a>
-                        </div>
-                    
                     
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2023/05/30/%E3%80%90%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81POC%E3%80%91HTTP%E8%AF%B7%E6%B1%82-%E5%93%8D%E5%BA%94/"
+                            href="/2023/05/30/%E3%80%90%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81POC%E3%80%91%E9%85%8D%E7%BD%AELinux%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">【漏洞验证POC】HTTP请求&amp;响应</span>
+                                    <span class="post-nav-title-item">【漏洞验证POC】配置Linux网络代理</span>
                                     <span class="post-nav-item">下一篇</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -603,8 +591,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">此页目录</div>
-        <div class="page-title">【漏洞验证POC】配置Linux网络代理</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="nav-text">配置方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%9C"><span class="nav-text">检查配置结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E6%B6%88%E4%BB%A3%E7%90%86"><span class="nav-text">取消代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-text">注意事项</span></a></li></ol></li></ol>
+        <div class="page-title">【漏洞验证POC】POC介绍和简单Demo</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#POC%E4%BB%8B%E7%BB%8D"><span class="nav-text">POC介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#POC"><span class="nav-text">POC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E4%B8%8E%E5%93%8D%E5%BA%94"><span class="nav-text">网络请求与响应</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Requests"><span class="nav-text">Requests</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%91%E9%80%81GET%E8%AF%B7%E6%B1%82"><span class="nav-text">发送GET请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%91%E9%80%81POST%E8%AF%B7%E6%B1%82"><span class="nav-text">发送POST请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96response"><span class="nav-text">获取response</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F%E4%B8%80%E6%AC%A1%E5%BC%B1%E5%8F%A3%E4%BB%A4PoC"><span class="nav-text">模拟一次弱口令PoC</span></a></li></ol></li></ol>
 
     </div>
 </div>
