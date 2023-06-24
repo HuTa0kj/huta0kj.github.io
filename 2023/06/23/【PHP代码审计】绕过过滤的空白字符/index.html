@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="HuTa0">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+        
+            <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+        
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2023/06/23/【php代码审计】绕过过滤的空白字符/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="根据PHP函数特性绕过">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【PHP代码审计】02 绕过过滤的空白字符">
+<meta property="og:url" content="http://example.com/2023/06/23/%E3%80%90PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E3%80%91%E7%BB%95%E8%BF%87%E8%BF%87%E6%BB%A4%E7%9A%84%E7%A9%BA%E7%99%BD%E5%AD%97%E7%AC%A6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="根据PHP函数特性绕过">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-06-23T04:45:04.000Z">
+<meta property="article:modified_time" content="2023-06-24T01:54:06.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="PHP">
+<meta property="article:tag" content="代码审计">
+<meta property="article:tag" content="绕过">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/eye_favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/eye_favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/eye_favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            【PHP代码审计】02 绕过过滤的空白字符 -
+        
+        HuTa0&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/fonts/fonts.css">
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/fonts/Satoshi/satoshi.css">
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/fonts/Chillax/chillax.css">
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":["SVIP++"]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":6,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/index/bg.jpg# light mode","dark":"/images/index/bg.jpg"},"title":"HuTa0's Blog","subtitle":{"text":["如切如磋，如琢如磨"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn/?c=b&c=d&c=i"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":false,"smart_backspace":false},"text_color":{"light":"#FFFFFF","dark":"#FFFFFF"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/HuTa0kj","instagram":null,"zhihu":null,"twitter":null,"email":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.2.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Categories":{"icon":"fa-solid fa-folder","path":"/categories"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/HuTa0kj"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":null},"article_date_format":"YYYY-MM-DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/5/20 00:00:00"};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    Global.data_config = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/fontawesome/regular.min.css">
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                HuTa0&#39;s Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        归档
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/categories"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-folder"></i>
+                                        
+                                        分类
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/tags"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-tags"></i>
+                                        
+                                        标签
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        关于&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/about">ME
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://github.com/HuTa0kj">GITHUB
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                归档
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/categories"  >
+                             
+                                
+                                    <i class="fa-solid fa-folder"></i>
+                                
+                                分类
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/tags"  >
+                             
+                                
+                                    <i class="fa-regular fa-tags"></i>
+                                
+                                标签
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                关于&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" href="/about">ME</a>
+                            </li>
+                        
+                            <li class="dropdown-item flex-center">
+                                <a class="dropdown-item" target="_blank" rel="noopener" href="https://github.com/HuTa0kj">GITHUB</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">【PHP代码审计】02 绕过过滤的空白字符</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://avatars.githubusercontent.com/u/67937284?v=4">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">HuTa0</span>
+                            
+                                <span class="author-label">SVIP++</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-06-23 12:45:04</span>
+        <span class="mobile">2023-06-23 12:45</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-06-24 09:54:06</span>
+            <span class="mobile">2023-06-24 09:54</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">PHP代码审计</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/PHP/">PHP</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%BB%95%E8%BF%87/">绕过</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.8k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>7 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h2><div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"> </span><br><span class="line"><span class="variable">$info</span> = <span class="string">&quot;&quot;</span>; </span><br><span class="line"><span class="variable">$req</span> = [];</span><br><span class="line"><span class="variable">$flag</span>=<span class="string">&quot;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&quot;</span>;</span><br><span class="line"> </span><br><span class="line"><span class="title function_ invoke__">ini_set</span>(<span class="string">&quot;display_error&quot;</span>, <span class="literal">false</span>); <span class="comment">//为一个配置选项设置值</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>); <span class="comment">//关闭所有PHP错误报告</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;number&#x27;</span>]))&#123;</span><br><span class="line">   <span class="title function_ invoke__">header</span>(<span class="string">&quot;hint:26966dc52e85af40f59b4fe73d8c323a.txt&quot;</span>); <span class="comment">//HTTP头显示hint 26966dc52e85af40f59b4fe73d8c323a.txt</span></span><br><span class="line"> </span><br><span class="line">   <span class="keyword">die</span>(<span class="string">&quot;have a fun!!&quot;</span>); <span class="comment">//die — 等同于 exit()</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">foreach</span>([<span class="variable">$_GET</span>, <span class="variable">$_POST</span>] <span class="keyword">as</span> <span class="variable">$global_var</span>) &#123;  <span class="comment">//foreach 语法结构提供了遍历数组的简单方式 </span></span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$global_var</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>) &#123; </span><br><span class="line">        <span class="variable">$value</span> = <span class="title function_ invoke__">trim</span>(<span class="variable">$value</span>);  <span class="comment">//trim — 去除字符串首尾处的空白字符（或者其他字符）</span></span><br><span class="line">        <span class="title function_ invoke__">is_string</span>(<span class="variable">$value</span>) &amp;&amp; <span class="variable">$req</span>[<span class="variable">$key</span>] = <span class="title function_ invoke__">addslashes</span>(<span class="variable">$value</span>); <span class="comment">// is_string — 检测变量是否是字符串，addslashes — 使用反斜线引用字符串</span></span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">is_palindrome_number</span>(<span class="params"><span class="variable">$number</span></span>) </span>&#123; </span><br><span class="line">    <span class="variable">$number</span> = <span class="title function_ invoke__">strval</span>(<span class="variable">$number</span>); <span class="comment">//strval — 获取变量的字符串值</span></span><br><span class="line">    <span class="variable">$i</span> = <span class="number">0</span>; </span><br><span class="line">    <span class="variable">$j</span> = <span class="title function_ invoke__">strlen</span>(<span class="variable">$number</span>) - <span class="number">1</span>; <span class="comment">//strlen — 获取字符串长度</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="variable">$i</span> &lt; <span class="variable">$j</span>) &#123; </span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$number</span>[<span class="variable">$i</span>] !== <span class="variable">$number</span>[<span class="variable">$j</span>]) &#123; </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">        &#125; </span><br><span class="line">        <span class="variable">$i</span>++; </span><br><span class="line">        <span class="variable">$j</span>--; </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>; </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">is_numeric</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;number&#x27;</span>])) <span class="comment">//is_numeric — 检测变量是否为数字或数字字符串 </span></span><br><span class="line">&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="variable">$info</span>=<span class="string">&quot;sorry, you cann&#x27;t input a number!&quot;</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">elseif</span>(<span class="variable">$req</span>[<span class="string">&#x27;number&#x27;</span>]!=<span class="title function_ invoke__">strval</span>(<span class="title function_ invoke__">intval</span>(<span class="variable">$req</span>[<span class="string">&#x27;number&#x27;</span>]))) <span class="comment">//intval — 获取变量的整数值</span></span><br><span class="line">&#123;</span><br><span class="line"> </span><br><span class="line">     <span class="variable">$info</span> = <span class="string">&quot;number must be equal to it&#x27;s integer!! &quot;</span>;  </span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line"> </span><br><span class="line">     <span class="variable">$value1</span> = <span class="title function_ invoke__">intval</span>(<span class="variable">$req</span>[<span class="string">&quot;number&quot;</span>]);</span><br><span class="line">     <span class="variable">$value2</span> = <span class="title function_ invoke__">intval</span>(<span class="title function_ invoke__">strrev</span>(<span class="variable">$req</span>[<span class="string">&quot;number&quot;</span>]));  </span><br><span class="line"> </span><br><span class="line">     <span class="keyword">if</span>(<span class="variable">$value1</span>!=<span class="variable">$value2</span>)&#123;</span><br><span class="line">          <span class="variable">$info</span>=<span class="string">&quot;no, this is not a palindrome number!&quot;</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">else</span></span><br><span class="line">     &#123;</span><br><span class="line"> </span><br><span class="line">          <span class="keyword">if</span>(<span class="title function_ invoke__">is_palindrome_number</span>(<span class="variable">$req</span>[<span class="string">&quot;number&quot;</span>]))&#123;</span><br><span class="line">              <span class="variable">$info</span> = <span class="string">&quot;nice! <span class="subst">&#123;$value1&#125;</span> is a palindrome number!&quot;</span>; </span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">else</span></span><br><span class="line">          &#123;</span><br><span class="line">             <span class="variable">$info</span>=<span class="variable">$flag</span>;</span><br><span class="line">          &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$info</span>;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="函数功能"><a href="#函数功能" class="headerlink" title="函数功能"></a>函数功能</h3><h4 id="isset"><a href="#isset" class="headerlink" title="isset()"></a>isset()</h4><p><code>isset()</code> 用于检查变量是否已定义且不为 null。如果变量已定义且不为 null，则 <code>isset()</code> 函数返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<h4 id="die"><a href="#die" class="headerlink" title="die()"></a>die()</h4><p><code>die()</code> 是一个用于终止当前脚本并输出一条消息的函数。它可以接受一个可选参数，表示要输出的消息。	</p>
+<h4 id="foreach"><a href="#foreach" class="headerlink" title="foreach()"></a>foreach()</h4><p>用于遍历数组</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$strings</span> = [<span class="string">&#x27;Hello&#x27;</span>, <span class="string">&#x27;World&#x27;</span>, <span class="string">&#x27;!&#x27;</span>];</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$strings</span> <span class="keyword">as</span> <span class="variable">$str</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$str</span> . <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输出: &quot;Hello World ! &quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="trim"><a href="#trim" class="headerlink" title="trim()"></a>trim()</h4><p><code>trim()</code> 是一个用于去除字符串首尾空白字符的函数。它接受一个参数，即要被处理的字符串。</p>
+<h4 id="is-string"><a href="#is-string" class="headerlink" title="is_string()"></a>is_string()</h4><p><code>is_string()</code> 是一个用于检查变量是否是字符串类型的函数。它接受一个参数，即要检查的变量。</p>
+<h4 id="addslashes"><a href="#addslashes" class="headerlink" title="addslashes()"></a>addslashes()</h4><p><code>addslashes()</code> 是一个用于为字符串中的特殊字符添加反斜杠转义符的函数。</p>
+<h4 id="is-numeric"><a href="#is-numeric" class="headerlink" title="is_numeric()"></a>is_numeric()</h4><p><code>is_numeric()</code> 是一个用于检查变量是否是数字（整数或浮点数）的函数。</p>
+<h4 id="strrev"><a href="#strrev" class="headerlink" title="strrev()"></a>strrev()</h4><p>把一个字符串进行倒转。</p>
+<h2 id="代码逻辑-amp-分析"><a href="#代码逻辑-amp-分析" class="headerlink" title="代码逻辑&amp;分析"></a>代码逻辑&amp;分析</h2><p>由这部分代码可以看出，如果 get 参数 <code>$number</code> 不存在就会终止然后输出 <code>&quot;have a fun!!&quot;</code>。</p>
+<p>所以必须要使用 get 传入参数 number，下面的 foreach 将会把 get 和 post 传入的参数遍历，然后提出键值对并去除空白字符。</p>
+<p><code>is_string($value) &amp;&amp; $req[$key] = addslashes($value); </code>这里则会校验值是否是一个字符串，该语句使用了逻辑与操作符 <code>&amp;&amp;</code> 连接两个表达式。当 <code>$value</code> 是字符串类型时，第一个表达式 <code>is_string($value)</code> 的返回值为 true，然后才会继续执行第二个表达式 <code>$req[$key] = addslashes($value)</code>。第二个表达式将 <code>$value</code> 的值添加反斜杠转义符后，将结果存储到 <code>$req</code> 数组中，其中 <code>$key</code> 表示当前元素的键名。</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;number&#x27;</span>]))&#123;</span><br><span class="line">   <span class="title function_ invoke__">header</span>(<span class="string">&quot;hint:26966dc52e85af40f59b4fe73d8c323a.txt&quot;</span>); <span class="comment">//HTTP头显示hint 26966dc52e85af40f59b4fe73d8c323a.txt</span></span><br><span class="line"> </span><br><span class="line">   <span class="keyword">die</span>(<span class="string">&quot;have a fun!!&quot;</span>); <span class="comment">//die — 等同于 exit()</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">foreach</span>([<span class="variable">$_GET</span>, <span class="variable">$_POST</span>] <span class="keyword">as</span> <span class="variable">$global_var</span>) &#123;  <span class="comment">//foreach 语法结构提供了遍历数组的简单方式 </span></span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$global_var</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>) &#123; </span><br><span class="line">        <span class="variable">$value</span> = <span class="title function_ invoke__">trim</span>(<span class="variable">$value</span>);  <span class="comment">//trim — 去除字符串首尾处的空白字符（或者其他字符）</span></span><br><span class="line">        <span class="title function_ invoke__">is_string</span>(<span class="variable">$value</span>) &amp;&amp; <span class="variable">$req</span>[<span class="variable">$key</span>] = <span class="title function_ invoke__">addslashes</span>(<span class="variable">$value</span>); <span class="comment">// is_string — 检测变量是否是字符串，addslashes — 使用反斜线引用字符串</span></span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></div>
+
+<p>前面有两个判断，第一个是判断是不是数字，如果是数字退出，也就是告诉我们要输入字符串。第二个判断是获取 <code>$number</code> 的整数部分与它本身做对比，如果不一样就退出，该表达式的作用是验证 <code>$req[&#39;number&#39;]</code> 是否为一个有效的整数值。</p>
+<p>通过上面代码，我们需要绕过这两种的判断机制，到最下面的 else 语句中才有机会获得 flag。</p>
+<p>想要绕过，就要输入一个既不是数字，并且整数部分要相同的参数，看起来是个悖论，但是如果输入一个非预期参数就可以做到。如果想到达最后的 else 中可以使用空白符，问题是前面使用了 <code>trim()</code> 去除了空白字符。</p>
+<p>这就需要考虑函数特性，可以看看<a class="link"   target="_blank" rel="noopener" href="https://exp10it.cn/2022/08/php-%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93%E7%AC%94%E8%AE%B0/#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2" >PHP函数特性 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><code>is_numeric()</code> 函数在开始判断前，会先跳过所有空白字符，所以使用 <code>%00</code> 绕过。</p>
+<p><code>trim()</code> 不会过滤换页符，换页符在 URL 编码后为 <code>%0c</code>。</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">is_numeric</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;number&#x27;</span>])) <span class="comment">//is_numeric — 检测变量是否为数字或数字字符串 </span></span><br><span class="line">&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="variable">$info</span>=<span class="string">&quot;sorry, you cann&#x27;t input a number!&quot;</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">elseif</span>(<span class="variable">$req</span>[<span class="string">&#x27;number&#x27;</span>]!=<span class="title function_ invoke__">strval</span>(<span class="title function_ invoke__">intval</span>(<span class="variable">$req</span>[<span class="string">&#x27;number&#x27;</span>]))) <span class="comment">//intval — 获取变量的整数值</span></span><br><span class="line">&#123;</span><br><span class="line"> </span><br><span class="line">     <span class="variable">$info</span> = <span class="string">&quot;number must be equal to it&#x27;s integer!! &quot;</span>;  </span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">     ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这个 else 里面的内容：首先提取 <code>($req[&quot;number&quot;]</code> 的整数部分记为 <code>$value1</code>。</p>
+<p>把 <code>($req[&quot;number&quot;]</code> 倒转后的数字记为 <code>$value2</code>。</p>
+<p>如果不相等就退出。</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="variable">$value1</span> = <span class="title function_ invoke__">intval</span>(<span class="variable">$req</span>[<span class="string">&quot;number&quot;</span>]);</span><br><span class="line">     <span class="variable">$value2</span> = <span class="title function_ invoke__">intval</span>(<span class="title function_ invoke__">strrev</span>(<span class="variable">$req</span>[<span class="string">&quot;number&quot;</span>]));  </span><br><span class="line"> </span><br><span class="line">     <span class="keyword">if</span>(<span class="variable">$value1</span>!=<span class="variable">$value2</span>)&#123;</span><br><span class="line">          <span class="variable">$info</span>=<span class="string">&quot;no, this is not a palindrome number!&quot;</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">else</span></span><br><span class="line">     &#123;</span><br><span class="line"> </span><br><span class="line">          <span class="keyword">if</span>(<span class="title function_ invoke__">is_palindrome_number</span>(<span class="variable">$req</span>[<span class="string">&quot;number&quot;</span>]))&#123;</span><br><span class="line">              <span class="variable">$info</span> = <span class="string">&quot;nice! <span class="subst">&#123;$value1&#125;</span> is a palindrome number!&quot;</span>; </span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">else</span></span><br><span class="line">          &#123;</span><br><span class="line">             <span class="variable">$info</span>=<span class="variable">$flag</span>;</span><br><span class="line">          &#125;</span><br><span class="line">     &#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$info</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>is_palindrome_number()</p>
+<p>直译为<code>回文数</code>，回文是指正读反读都能读通的句子，回文数意思就是前后读都是一样的数字，例如<code>12521</code>。</p>
+<p>自定义函数，输入一个参数 <code>$number</code> 并提取字符串的值。</p>
+<p>有一个初始变量 <code>$i</code> &#x3D; 0，一个参数 <code>$j</code> 为输入参数的长度。</p>
+<p>开始循环，只要 <code>$i</code> &lt; <code>$j</code> 就继续循环，如果两个数不相等则返回 FALSE，然后 <code>$i+=1</code>，<code>$j-=1</code>。这里面 <code>$i</code> 是一个从0开始的数，而 <code>$j</code> 是输入 <code>$number</code> 的长度。</p>
+<p>简单地说就是一个初始指针和一个末尾指针做对比，判断是不是一个回文数。</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">is_palindrome_number</span>(<span class="params"><span class="variable">$number</span></span>) </span>&#123; </span><br><span class="line">    <span class="variable">$number</span> = <span class="title function_ invoke__">strval</span>(<span class="variable">$number</span>); <span class="comment">//strval — 获取变量的字符串值</span></span><br><span class="line">    <span class="variable">$i</span> = <span class="number">0</span>; </span><br><span class="line">    <span class="variable">$j</span> = <span class="title function_ invoke__">strlen</span>(<span class="variable">$number</span>) - <span class="number">1</span>; <span class="comment">//strlen — 获取字符串长度</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="variable">$i</span> &lt; <span class="variable">$j</span>) &#123; </span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$number</span>[<span class="variable">$i</span>] !== <span class="variable">$number</span>[<span class="variable">$j</span>]) &#123; </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">        &#125; </span><br><span class="line">        <span class="variable">$i</span>++; </span><br><span class="line">        <span class="variable">$j</span>--; </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></div>
+
+<p>构建相等后就需要通过这个自定义函数，在判断为 FALSE 的时候就会爆出 flag。</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">is_palindrome_number</span>(<span class="variable">$req</span>[<span class="string">&quot;number&quot;</span>]))&#123;</span><br><span class="line">   <span class="variable">$info</span> = <span class="string">&quot;nice! <span class="subst">&#123;$value1&#125;</span> is a palindrome number!&quot;</span>; </span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">       <span class="variable">$info</span>=<span class="variable">$flag</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="构造payload"><a href="#构造payload" class="headerlink" title="构造payload"></a>构造payload</h3><p>使用 <code>%00</code> 绕过 <code>is_numeric()</code>，使用 <code>%0c</code> 绕过 <code>trim()</code> 并且后面需要添加一个任意的回文数即可。</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">payload 1</span></span><br><span class="line">?number=%00%0c121</span><br></pre></td></tr></table></figure></div>
+
+<p>当然 <code>trim()</code> 的绕过不是只能使用 <code>%0c</code> 换页符，那如何输入一个非空的值，还可以让后面的回文数整数部分相同？</p>
+<p>可以想到 <code>+121</code> &#x3D;&#x3D; <code>121</code>，<code>+</code> 既不是空值，也可以让数字相等，在URL中 <code>+</code> 编码后的内容为 <code>%2B</code>。</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">payload 2</span></span><br><span class="line">?number=%00%2B121</span><br></pre></td></tr></table></figure></div>
+
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 【PHP代码审计】02 绕过过滤的空白字符</li>
+        <li><strong>作者:</strong> HuTa0</li>
+        <li><strong>创建于:</strong> 2023-06-23 12:45:04</li>
+        
+            <li>
+                <strong>更新于:</strong> 2023-06-24 09:54:06
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://huta0kj.github.io/2023/06/23/【PHP代码审计】绕过过滤的空白字符/
+        </li>
+        <li>
+            <strong>版权声明:</strong> 本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 进行许可。
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/PHP/">#PHP</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">#代码审计</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E7%BB%95%E8%BF%87/">#绕过</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2023/06/22/%E3%80%90PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E3%80%91extract%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">【PHP代码审计】01 extract变量覆盖</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;评论
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-pjax
+            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <script data-pjax>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: '8359a741c2c723250c6f',
+                    clientSecret: 'b65ec2e3cbfe34ccb7ac8e4b7ffce2dff9c0f3ae',
+                    repo: 'Gitalk_Comment',
+                    owner: 'HuTa0kj',
+                    admin: ['HuTa0kj'],
+                    id: __gitalk__pathname,
+                    language: 'zh-CN'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">【PHP代码审计】02 绕过过滤的空白字符</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="nav-text">源代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%8A%9F%E8%83%BD"><span class="nav-text">函数功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#isset"><span class="nav-text">isset()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#die"><span class="nav-text">die()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#foreach"><span class="nav-text">foreach()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#trim"><span class="nav-text">trim()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#is-string"><span class="nav-text">is_string()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#addslashes"><span class="nav-text">addslashes()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#is-numeric"><span class="nav-text">is_numeric()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strrev"><span class="nav-text">strrev()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E9%80%BB%E8%BE%91-amp-%E5%88%86%E6%9E%90"><span class="nav-text">代码逻辑&amp;分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E9%80%A0payload"><span class="nav-text">构造payload</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">HuTa0</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 驱动</span>
+                <br>
+            <span class="theme-version-container">主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.2.0</a>
+        </div>
+        
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+<script src="https://evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/js/utils.js"></script><script src="https://evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/js/main.js"></script><script src="https://evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/js/layouts/navbarShrink.js"></script><script src="https://evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/js/tools/scrollTopBottom.js"></script><script src="https://evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/js/tools/lightDarkSwitch.js"></script>
+
+
+
+
+    <script src="https://evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/js/tools/codeBlock.js"></script>
+
+
+
+    <script src="https://evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/js/layouts/lazyload.js"></script>
+
+
+
+    <script src="https://evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/js/tools/runtime.js"></script>
+    <script src="https://evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/js/libs/odometer.min.js"></script>
+    <link rel="stylesheet" href="//evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/assets/odometer-theme-minimal.css">
+
+
+
+  <script src="https://evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/js/libs/Typed.min.js"></script>
+  <script src="https://evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/js/plugins/typed.js"></script>
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        <script src="https://evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/js/tools/tocToggle.js"></script><script src="https://evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/js/libs/anime.min.js"></script><script src="https://evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/js/layouts/toc.js"></script><script src="https://evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/js/plugins/tabs.js"></script>
+    
+</div>
+
+
+    <script src="https://evan.beee.top/projects/hexo-theme-redefine@2.2.0/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
